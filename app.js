@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 9000;
 
@@ -14,15 +15,11 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
 	console.log('DB Connected');
-	// console.log(process.env);
-
-	/* 	mongoose.connection.collections['blog-api'].drop( function(err) {
-    console.log('collection dropped');
-}); */
 });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 const blogRoute = require('./routes/blogroute');
 /*===== Blog Routes =====*/
@@ -37,7 +34,7 @@ const apitest = require('./routes/blogroute');
 app.get('/apitest', apitest);
 
 const newComment = require('./routes/commentsroute');
-app.post('/api/:blogid/comment', newComment);
+app.post('/:id/comment', newComment);
 /* Wildcard */
 /* app.get('*', (req, res) => {
 	res.send('hello');

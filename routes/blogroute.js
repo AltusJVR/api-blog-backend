@@ -11,6 +11,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.get('/', (req, res) => {
 	Blog.find({}, (err, allBlogs) => {
 		if (err) return console.log(err);
+		// console.log(allBlogs);
 		res.json(allBlogs);
 	});
 });

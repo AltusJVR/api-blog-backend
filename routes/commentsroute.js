@@ -10,7 +10,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 /* Create New Comment */
-router.post('/api/:id/comment', (req, res) => {
+router.post('/:id/comment', (req, res) => {
 	const { commentBody, author } = req.body;
 	const id = req.params.id;
 	const commentNew = new Comment({
