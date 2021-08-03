@@ -6,6 +6,7 @@ const blogSchema = new Schema({
 	title: String, // String is shorthand for {type: String}
 	author: String,
 	body: String,
+	picture: String,
 	comments: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
@@ -13,7 +14,7 @@ const blogSchema = new Schema({
 		},
 	],
 	date: { type: Date, default: Date() },
-	hidden: Boolean,
+	hidden: { type: Boolean, default: false },
 	meta: {
 		votes: Number,
 		favs: Number,

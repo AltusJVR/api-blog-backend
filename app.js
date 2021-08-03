@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 9000;
 mongoose.connect('mongodb://localhost:27017/blog-api', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
 });
 
 const db = mongoose.connection;
@@ -28,7 +29,9 @@ app.get('/', blogRoute);
 /* Add a new Blog Post */
 app.post('/blog', blogRoute);
 /* Show single blog post */
-app.get('/:id', blogRoute);
+app.get('/blog', blogRoute);
+/* Edit a blog post */
+app.post('/edit', blogRoute);
 
 const apitest = require('./routes/blogroute');
 app.get('/apitest', apitest);
